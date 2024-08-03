@@ -17,7 +17,7 @@ jobs:
     - name: build
       run: |
         docker build . --file aks-dockerfile --tag spark --label "runnumber=${GITHUB_RUN_ID}"
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.io -u chenkewen2 --password-stdin
+        echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login docker.io -u chenkewen2 --password-stdin
     - name: push
       run: |
           IMAGE_NAME=docker.io/chenkewen2/spark
