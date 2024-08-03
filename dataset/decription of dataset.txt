@@ -1,0 +1,6 @@
+Dataset URL：https://www.kaggle.com/datasets/bhanupratapbiswas/olympic-data
+
+
+
+
+Dataset Description:   The Olympic Data dataset from Kaggle is a thorough compilation of historical information on the Olympic Games, including data on athletes, events, and results. This dataset offers insights into the performances of athletes from different nations across various editions of both the Summer and Winter Olympics. It consists of 15 columns and 271117 rows, with data spanning from 1896 to 2016. However, I have focused on data from the 1956 to 2016 Olympics, as I consider the post-World War II Games more reflective of modern sports and hence more pertinent for analysis. The refined dataset includes 15 columns and  rows.

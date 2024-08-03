@@ -1,0 +1,58 @@
+# This is the basic Spark for running a Spark environment on AKS
+
+FROM apache/spark
+
+#promote privilege to root 
+USER root
+
+# Set basic runtime
+RUN apt-get update && apt-get install build-essential -y
+RUN apt-get install vim -y
+RUN apt-get install sudo -y
+RUN pip3 install --upgrade pip setuptools
+
+#For data analysis
+RUN pip3 install numpy
+RUN pip3 install pandas pyarrow
+
+#Set up the env variables for Spark and 
+ENV SPARK_HOME /opt/spark/
+ENV PATH /opt/spark/bin:/opt/spark/sbin:$PATH
+
+#Set the output log level to WARN
+COPY ./log4j2.properties /opt/spark/conf/
+
+#Install required jar packages for accessing AKS
+WORKDIR /opt/spark/work-dir
+RUN wget --quiet https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-azure/3.3.4/hadoop-azure-3.3.4.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-azure-datalake/3.3.4/hadoop-azure-datalake-3.3.4.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/microsoft/azure/azure-storage/7.0.1/azure-storage-7.0.1.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/apache/hadoop/thirdparty/hadoop-shaded-guava/1.1.1/hadoop-shaded-guava-1.1.1.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util-ajax/9.4.43.v20210629/jetty-util-ajax-9.4.43.v20210629.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/wildfly/openssl/wildfly-openssl/1.0.7.Final/wildfly-openssl-1.0.7.Final.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/commons-codec/commons-codec/1.15/commons-codec-1.15.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.12.7/jackson-core-2.12.7.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/microsoft/azure/azure-keyvault-core/1.0.0/azure-keyvault-core-1.0.0.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-util/9.4.43.v20210629/jetty-util-9.4.43.v20210629.jar 
+RUN wget --quiet https://repo1.maven.org/maven2/com/microsoft/azure/azure-data-lake-store-sdk/2.3.9/azure-data-lake-store-sdk-2.3.9.jar 
+
+#Move the jar packages to /opt/spark/jars/
+RUN mv *.jar /opt/spark/jars/
+
+#go back to user spark account
+USER spark
+

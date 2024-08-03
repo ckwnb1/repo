@@ -1,0 +1,37 @@
+Sport,Age_Bin,Height_Bin,Weight_Bin
+Archery,20-25,165-170,70-80
+Athletics,20-25,180-185,60-70
+Badminton,25-30,175-180,60-70
+Baseball,25-30,185-190,80-90
+Basketball,20-25,190-195,90-100
+Beach Volleyball,30-35,190-195,70-80
+Boxing,20-25,165-170,60-70
+Canoeing,20-25,180-185,80-90
+Cycling,20-25,180-185,70-80
+Diving,20-25,160-165,50-60
+Equestrianism,30-35,170-175,60-70
+Fencing,25-30,175-180,70-80
+Football,20-25,170-175,70-80
+Golf,25-30,165-170,60-70
+Gymnastics,20-25,160-165,50-60
+Handball,25-30,180-185,70-80
+Hockey,25-30,170-175,60-70
+Judo,20-25,170-175,60-70
+Modern Pentathlon,25-30,180-185,70-80
+Rhythmic Gymnastics,15-20,175-180,50-60
+Rowing,25-30,190-195,90-100
+Rugby Sevens,20-25,165-170,60-70
+Sailing,25-30,180-185,70-80
+Shooting,25-30,175-180,70-80
+Softball,25-30,165-170,60-70
+Swimming,20-25,180-185,60-70
+Synchronized Swimming,20-25,170-175,50-60
+Table Tennis,20-25,165-170,60-70
+Taekwondo,20-25,180-185,50-60
+Tennis,25-30,190-195,80-90
+Trampolining,20-25,170-175,50-60
+Triathlon,30-35,180-185,70-80
+Volleyball,25-30,180-185,70-80
+Water Polo,25-30,185-190,90-100
+Weightlifting,20-25,170-175,50-60
+Wrestling,25-30,170-175,60-70
